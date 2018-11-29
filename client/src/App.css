@@ -1,0 +1,7 @@
+#mainwrapper{
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+.buttonspacing{
+  margin: 20px 20px;
+}
