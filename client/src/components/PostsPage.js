@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import SideBar from './SideBar';
 import axios from 'axios';
+import {NavLink} from 'react-router-dom';
 class PostsPage extends Component {
     constructor(props){
         super(props);
-        this.state = {posts: [], filteredPosts: []};
+        this.state = {posts: [], filteredPosts: [], itemVisible: {}};
         this.changeFilter = this.changeFilter.bind(this);
+        this.toggleVisiblity = this.toggleVisiblity.bind(this);
     }
     componentWillMount(){
         axios.get('/api/posts')
@@ -21,20 +23,23 @@ class PostsPage extends Component {
         if(value != ""){
             this.setState({filteredPosts: this.state.posts.filter(post => post.category === value)})
         }
-        else{
-            this.setState({filteredPosts: this.state.posts})
-        }
+    }
+    toggleVisiblity(id){
+        let itemVisible = this.state.itemVisible;
+        itemVisible[id] = itemVisible[id] === "visible" ? "hidden" : "visible";
+        this.setState({itemVisible});
     }
     render(){
         return(
-            <div id="mainwrapper">
-                <SideBar/>
-                <div id="postspage">
-                    <button className="btn btn-primary buttonspacing" onClick={() => this.changeFilter("")} type="button">Clear Filter</button>
-                    <button className="btn btn-primary buttonspacing" onClick={() => this.changeFilter("Posts")} type="button">Posts</button>
-                    <button className="btn btn-primary buttonspacing" onClick={() => this.changeFilter("Item")} type="button">Items</button>
-                    {this.state.filteredPosts.map(item => <h1 key={item.item_id}>{item.title}</h1>)}
-                </div>
+            <div className="standardcontent" id="postspage">
+                <button className="btn btn-primary buttonspacing" onClick={() => this.changeFilter("Posts")} type="button">Posts</button>
+                <button className="btn btn-primary buttonspacing" onClick={() => this.changeFilter("Items")} type="button">Items</button><br></br>
+                {this.state.filteredPosts.map(item => (
+                    <div className="postbox" id={item.item_id} key={item.item_id} onClick={() => this.toggleVisiblity(item.item_id)}>
+                        <h1>{item.title}</h1>
+                        <p visibility={this.state.itemVisible[item.item_id]} className="postcontent">{item.content}</p>
+                    </div>
+                ))}
             </div>
         );
     }

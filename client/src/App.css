@@ -1,7 +1,59 @@
 #mainwrapper{
-  display: grid;
-  grid-template-columns: 30% 70%;
 }
 .buttonspacing{
   margin: 20px 20px;
+}
+#sidebarheader{
+  padding: 50px;
+  text-align: center;
+  font-family: 'Inconsolata', monospace;
+}
+#quicklinks{
+  padding: 0px 50px;
+  text-align: center;
+  font-size: 25px;
+  font-family: 'Inconsolata', monospace;
+}
+#quicklinks > div{
+}
+.standardcontent{
+  text-align: center;
+  padding: 100px;
+  float: left;
+  width: 80%;
+}
+#sidebar{
+  width: 20%;
+  float: right;
+  height: 100%;
+}
+#sitelogo{
+  height: 200px;
+  width: 200px
+}
+.toolwrapper{
+  margin: auto;
+  width: 200px;
+}
+.secondarytoolwrapper{
+}
+.toolsicon{
+  max-height: 150px;
+  max-width: 150px;
+}
+.toolstext{
+  max-height: 50px;
+  max-width: 50px;
+}
+.postbox{
+  width: 33%;
+  background: lightgray;
+  display: inline-block;
+  vertical-align: top;
+  height: 25vh;
+  float: left;
+  transition: ease-in-out .2s;
+}
+.postbox:hover{
+  background: gray;
 }

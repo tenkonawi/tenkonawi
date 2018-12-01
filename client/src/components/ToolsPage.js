@@ -17,11 +17,8 @@ class ToolsPage extends Component {
     }
     render(){
         return(
-            <div id="mainwrapper">
-                <SideBar/>
-                <div id="toolspage">
-                    {this.state.tools.map(item => <h1 key={item.item_id}>{item.title}</h1>)}
-                </div>
+            <div className="standardcontent" id="toolspage">
+                {this.state.tools.map(item => <h1 key={item.item_id}>{item.title}</h1>)}
             </div>
         );
     }
